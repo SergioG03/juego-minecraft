@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft App</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1 id="header-title">Inicio</h1>
+        <nav>
+            <ul>
+                <li><a href="/choose-character">Elegir Personaje</a></li>
+                <li><a href="/shop">Tienda</a></li>
+            </ul>
+        </nav>
+        <div id="coins-display" class="coins">Monedas: 0</div>
+    </header>    
+    <main>
+        <p>Bienvenido a la web de Minecraft. ¡Empieza a jugar eligiendo tu personaje!</p>
+    </main>
+    <script>
+        // Cargar las monedas almacenadas en localStorage
+        function loadCoins() {
+            let coins = localStorage.getItem('coins');
+            if (!coins) {
+                coins = 0;
+                localStorage.setItem('coins', coins);
+            }
+            document.getElementById('coins-display').textContent = `Monedas: ${coins}`;
+        }
+    
+        // Ejecutar la función al cargar la página
+        window.onload = function() {
+            loadCoins();
+        };
+    </script>
+    
+</body>
+</html>

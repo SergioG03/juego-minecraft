@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1 id="header-title">Tienda</h1>
+        <nav>
+            <ul>
+                <li><a href="/choose-character">Elegir Personaje</a></li>
+                <li><a href="/shop">Tienda</a></li>
+            </ul>
+        </nav>
+        <div id="coins-display" class="coins">Monedas: 0</div> <!-- Monedas en el header -->
+    </header>
+
+    <main>
+        <h2>Tienda de Personajes</h2>
+        <div id="shop-items">
+            <div class="shop-item">
+                <h3>Skeleton (200 monedas)</h3>
+                <button id="buy-skeleton" onclick="buyCharacter('skeleton', 200)">Comprar</button>
+            </div>
+            <div class="shop-item">
+                <h3>Witch (300 monedas)</h3>
+                <button id="buy-witch" onclick="buyCharacter('witch', 300)">Comprar</button>
+            </div>
+            <div class="shop-item">
+                <h3>Enderman (400 monedas)</h3>
+                <button id="buy-enderman" onclick="buyCharacter('enderman', 400)">Comprar</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Cargar monedas desde localStorage
+        function loadCoins() {
+            let coins = localStorage.getItem('coins');
+            if (!coins) {
+                coins = 0;
+                localStorage.setItem('coins', coins);
+            }
+            document.getElementById('coins-display').textContent = `Monedas: ${coins}`;
+        }
+
+        // Función para comprar un personaje
+        function buyCharacter(character, cost) {
+            let coins = parseInt(localStorage.getItem('coins')) || 0;
+            let unlockedCharacters = JSON.parse(localStorage.getItem('unlockedCharacters')) || [];
+
+            // Verificar si ya se ha comprado el personaje
+            if (unlockedCharacters.includes(character)) {
+                alert('Este personaje ya está desbloqueado.');
+                return;
+            }
+
+            // Verificar si hay suficientes monedas
+            if (coins >= cost) {
+                // Restar el costo del personaje
+                coins -= cost;
+                localStorage.setItem('coins', coins);
+
+                // Desbloquear el personaje
+                unlockedCharacters.push(character);
+                localStorage.setItem('unlockedCharacters', JSON.stringify(unlockedCharacters));
+
+                // Actualizar el header de monedas
+                document.getElementById('coins-display').textContent = `Monedas: ${coins}`;
+
+                // Cambiar el botón de compra a "Comprado"
+                const buyButton = document.getElementById(`buy-${character}`);
+                buyButton.textContent = 'Comprado';
+                buyButton.disabled = true; // Desactivar el botón
+
+                alert(`Has comprado a ${character}.`);
+            } else {
+                alert('No tienes suficientes monedas para comprar este personaje.');
+            }
+        }
+
+        // Ejecutar al cargar la página
+        window.onload = function() {
+            loadCoins();
+        };
+    </script>
+</body>
+</html>

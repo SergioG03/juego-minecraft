@@ -1,0 +1,149 @@
+/* Fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Estilos Generales */
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #4e9b4c; /* Color verde oscuro sólido */
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Encabezado */
+header {
+    background-color: #222;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+/* Navegación */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+a {
+    color: #ffcc00;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ffaa00;
+}
+
+/* Carrusel */
+.carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.carousel-inner {
+    display: flex;
+    overflow: hidden;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 10px 0; /* Añadir espacio en la parte superior e inferior del carrusel */
+}
+
+.character {
+    display: none; /* Se manejará en el script */
+    flex-shrink: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.character-image {
+    width: 100%; /* Imágenes a ancho completo */
+    height: 300px; /* Ajustar altura constante */
+    object-fit: contain; /* Mantener la proporción y mostrar la imagen completa */
+    border-radius: 10px 10px 0 0;
+}
+
+.carousel-btn {
+    background-color: #ffcc00;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #222;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 0 20px; /* Añadir margen para separar las flechas del cuadro */
+}
+
+.carousel-btn:hover {
+    background-color: #ffaa00;
+    transform: scale(1.1);
+}
+
+/* Botones */
+button {
+    background-color: #ffcc00;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #ffaa00;
+    transform: translateY(-2px);
+}
+
+/* Estadísticas y Monedas */
+#stats, #coins {
+    font-size: 18px;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Animaciones de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+main {
+    animation: fadeIn 0.5s ease-in;
+    padding: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .character-card {
+        width: 80%;
+        margin: 10px auto;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+}

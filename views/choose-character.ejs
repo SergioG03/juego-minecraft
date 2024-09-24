@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegir Personaje</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1 id="header-title">Personajes</h1>
+        <nav>
+            <ul>
+                <li><a href="/choose-character">Elegir Personaje</a></li>
+                <li><a href="/shop">Tienda</a></li>
+            </ul>
+        </nav>
+        <div id="coins-display" class="coins">Monedas: 0</div> <!-- Monedas en el header -->
+    </header>
+
+    <main>
+        <h2>Selecciona tu Personaje</h2>
+        <div class="carousel">
+            <button class="carousel-btn" id="prev-btn">&#9664;</button>
+            <div id="character-list" class="carousel-inner">
+                <div class="character" id="zombie">
+                    <img src="images/zombie.png" alt="Zombie" class="character-image">
+                    <h3>Zombie</h3>
+                    <p id="zombie-stats">Estadísticas: Vida: 100, Estamina: 50, Energía: 30</p>
+                    <button onclick="selectCharacter('zombie')">Seleccionar</button>
+                </div>
+                <div class="character" id="creeper">
+                    <img src="images/creeper.png" alt="Creeper" class="character-image">
+                    <h3>Creeper</h3>
+                    <p id="creeper-stats">Estadísticas: Vida: 80, Estamina: 60, Energía: 40</p>
+                    <button onclick="selectCharacter('creeper')">Seleccionar</button>
+                </div>
+                <div class="character" id="enderdragon">
+                    <img src="images/enderdragon.png" alt="Arquero" class="character-image">
+                    <h3>Ender Dragon</h3>
+                    <p id="archer-stats">Estadísticas: Vida: 70, Estamina: 60, Energía: 50</p>
+                    <button onclick="selectCharacter('archer')">Seleccionar</button>
+                </div>
+                <div class="character" id="skeleton" style="display: none;">
+                    <img src="images/skeleton.png" alt="Skeleton" class="character-image">
+                    <h3>Skeleton</h3>
+                    <p id="skeleton-stats">Estadísticas: Vida: 90, Estamina: 70, Energía: 50</p>
+                    <button onclick="selectCharacter('skeleton')">Seleccionar</button>
+                </div>
+                <div class="character" id="witch" style="display: none;">
+                    <img src="images/witch.png" alt="Witch" class="character-image">
+                    <h3>Witch</h3>
+                    <p id="witch-stats">Estadísticas: Vida: 110, Estamina: 80, Energía: 60</p>
+                    <button onclick="selectCharacter('witch')">Seleccionar</button>
+                </div>
+                <div class="character" id="enderman" style="display: none;">
+                    <img src="images/enderman.png" alt="Enderman" class="character-image">
+                    <h3>Enderman</h3>
+                    <p id="enderman-stats">Estadísticas: Vida: 120, Estamina: 90, Energía: 70</p>
+                    <button onclick="selectCharacter('enderman')">Seleccionar</button>
+                </div>
+            </div>
+            <button class="carousel-btn" id="next-btn">&#9654;</button>
+        </div>
+    </main>
+
+    <script>
+        // Cargar monedas desde localStorage
+        function loadCoins() {
+            let coins = localStorage.getItem('coins');
+            if (!coins) {
+                coins = 0;
+                localStorage.setItem('coins', coins);
+            }
+            document.getElementById('coins-display').textContent = `Monedas: ${coins}`;
+        }
+
+        // Función para cargar las estadísticas de un personaje desde localStorage
+        function loadCharacterStats(character) {
+            let stats = localStorage.getItem(`${character}_stats`);
+            if (stats) {
+                stats = JSON.parse(stats);
+                document.getElementById(`${character}-stats`).textContent = `Estadísticas: Vida: ${stats.health}, Estamina: ${stats.stamina}, Energía: ${stats.energy}`;
+            }
+        }
+
+        // Cargar las estadísticas de todos los personajes
+        function loadAllCharacterStats() {
+            const characters = ['zombie', 'creeper', 'archer', 'skeleton', 'witch', 'enderman'];
+            characters.forEach(character => {
+                loadCharacterStats(character);
+            });
+        }
+
+        // Mostrar los personajes desbloqueados
+        function loadUnlockedCharacters() {
+            let unlockedCharacters = JSON.parse(localStorage.getItem('unlockedCharacters')) || [];
+            unlockedCharacters.forEach(character => {
+                document.getElementById(character).style.display = 'block';
+            });
+        }
+
+        // Función para seleccionar un personaje
+        function selectCharacter(characterName) {
+            // Guardar el personaje seleccionado en localStorage
+            localStorage.setItem('selectedCharacter', characterName);
+            // Redirigir a la página de jugar
+            window.location.href = `/play`;
+        }
+
+        // Funciones para el carrusel
+        let currentIndex = 0;
+        const characters = document.querySelectorAll('.character');
+
+        function updateCarousel() {
+            characters.forEach((character, index) => {
+                character.style.display = (index === currentIndex) ? 'block' : 'none';
+            });
+        }
+
+        document.getElementById('prev-btn').addEventListener('click', function() {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : characters.length - 1;
+            updateCarousel();
+        });
+
+        document.getElementById('next-btn').addEventListener('click', function() {
+            currentIndex = (currentIndex < characters.length - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        });
+
+        // Ejecutar al cargar la página
+        window.onload = function() {
+            loadCoins();
+            loadAllCharacterStats();  // Cargar las estadísticas de los personajes
+            loadUnlockedCharacters();  // Cargar personajes desbloqueados
+            updateCarousel(); // Inicializar el carrusel
+        };
+    </script>
+</body>
+</html>
