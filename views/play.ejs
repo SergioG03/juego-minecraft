@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jugar</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1 id="header-title">Jugar</h1>
+        <nav>
+            <ul>
+                <li><a href="/choose-character">Elegir Personaje</a></li>
+                <li><a href="/shop">Tienda</a></li>
+            </ul>
+        </nav>
+        <div id="coins-display" class="coins">Monedas: 0</div> <!-- Monedas en el header -->
+    </header>
+    <main>
+        <h2 id="character-name">Subir de nivel</h2> <!-- Cambiamos el ID para acceder a él en JS -->
+        <button onclick="levelUp()">Subir de Nivel</button>
+        <p id="stats">Estadísticas del Personaje: Vida: 0, Estamina: 0, Energía: 0</p>
+        <p id="coins">Monedas: 0</p>
+    </main>
+
+    <script>
+        // Cargar monedas desde localStorage
+        function loadCoins() {
+            let coins = localStorage.getItem('coins');
+            if (!coins) {
+                coins = 0;
+                localStorage.setItem('coins', coins);
+            }
+            document.getElementById('coins-display').textContent = `Monedas: ${coins}`;
+        }
+
+        // Inicializar monedas y estadísticas al cargar la página
+        window.onload = function() {
+            loadCoins();
+            loadStats();
+            displayCharacterName(); // Mostrar el nombre del personaje
+        };
+
+        // Recuperar el personaje seleccionado de localStorage
+        const selectedCharacter = localStorage.getItem('selectedCharacter');
+        if (!selectedCharacter) {
+            alert('Primero debes elegir un personaje');
+            window.location.href = '/choose-character';
+        }
+
+        let coins = parseInt(localStorage.getItem('coins')) || 0;  // Cargar monedas de localStorage
+        let stats = JSON.parse(localStorage.getItem(`${selectedCharacter}_stats`)) || {
+            health: 100,
+            stamina: 50,
+            energy: 30
+        };
+
+        // Mostrar las estadísticas iniciales
+        document.getElementById('stats').textContent = `Estadísticas del Personaje: Vida: ${stats.health}, Estamina: ${stats.stamina}, Energía: ${stats.energy}`;
+        document.getElementById('coins').textContent = `Monedas: ${coins}`;
+
+        // Función para subir de nivel
+        function levelUp() {
+            // Incrementar las estadísticas
+            stats.health += 10;
+            stats.stamina += 5;
+            stats.energy += 3;
+            coins += 10;  // Incrementar las monedas
+
+            // Actualizar las estadísticas y monedas en la interfaz
+            document.getElementById('stats').textContent = `Estadísticas del Personaje: Vida: ${stats.health}, Estamina: ${stats.stamina}, Energía: ${stats.energy}`;
+            document.getElementById('coins').textContent = `Monedas: ${coins}`;
+            document.getElementById('coins-display').textContent = `Monedas: ${coins}`;  // Actualizar el header
+
+            // Guardar las estadísticas y monedas en localStorage
+            localStorage.setItem(`${selectedCharacter}_stats`, JSON.stringify(stats));
+            localStorage.setItem('coins', coins);
+        }
+
+        // Cargar las estadísticas guardadas del personaje
+        function loadStats() {
+            let savedStats = localStorage.getItem(`${selectedCharacter}_stats`);
+            if (savedStats) {
+                stats = JSON.parse(savedStats);
+                document.getElementById('stats').textContent = `Estadísticas del Personaje: Vida: ${stats.health}, Estamina: ${stats.stamina}, Energía: ${stats.energy}`;
+            } else {
+                // Guardar las estadísticas por defecto si no existen
+                localStorage.setItem(`${selectedCharacter}_stats`, JSON.stringify(stats));
+            }
+        }
+
+        // Mostrar el nombre del personaje seleccionado
+        function displayCharacterName() {
+            document.getElementById('character-name').textContent = `Subir de nivel: ${selectedCharacter.charAt(0).toUpperCase() + selectedCharacter.slice(1)}`;
+        }
+    </script>
+</body>
+</html>
