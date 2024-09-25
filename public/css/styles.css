@@ -20,6 +20,28 @@ header {
     position: relative;
 }
 
+/* Estilos del formulario */
+form {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    margin: 20px auto;
+    max-width: 400px; /* Máximo ancho del formulario */
+}
+
+/* Estilos de los campos de entrada */
+input[type="text"], input[type="file"], input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    background-color: #fff;
+    color: #222;
+    font-size: 16px;
+}
+
 /* Navegación */
 nav ul {
     list-style: none;
@@ -130,10 +152,13 @@ button:hover {
     }
 }
 
+
 main {
     animation: fadeIn 0.5s ease-in;
     padding: 20px;
 }
+
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -147,3 +172,5 @@ main {
         margin: 10px 0;
     }
 }
+
+
