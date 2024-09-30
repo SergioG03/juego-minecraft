@@ -1,0 +1,61 @@
+/* Estilos generales */
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #6db5a0; /* Color de fondo similar a la vegetación de Minecraft */
+    color: #ffffff; /* Color de texto blanco */
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+    text-align: center;
+}
+
+/* Formulario */
+form {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con algo de transparencia */
+    border: 2px solid #b5b5b5; /* Borde gris claro */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra del formulario */
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="password"] {
+    background-color: #4f8f4e; /* Verde oscuro similar al color del césped */
+    border: 2px solid #8b8b8b; /* Borde gris */
+    border-radius: 5px;
+    color: #ffffff; /* Color de texto blanco */
+    padding: 10px;
+    width: 100%; /* Ocupar el ancho completo */
+    box-sizing: border-box; /* Incluir padding y border en el ancho total */
+    margin: 10px 0; /* Margen entre los campos */
+}
+
+/* Botón */
+button {
+    background-color: #ffcc00; /* Color amarillo de Minecraft */
+    border: none;
+    border-radius: 5px;
+    color: #000000; /* Texto negro */
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ffd700; /* Color amarillo más claro al pasar el mouse */
+}
+
+/* Enlaces */
+a {
+    color: #ffcc00; /* Color amarillo de Minecraft */
+    text-decoration: none; /* Sin subrayado */
+}
+
+a:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}

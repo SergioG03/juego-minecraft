@@ -1,8 +1,18 @@
 const express = require('express');
+<<<<<<< Updated upstream
 const path = require('path');
 const multer = require('multer');
-const app = express();
+=======
+const mongoose = require('mongoose');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const authRoutes = require('./routes/auth');
 
+>>>>>>> Stashed changes
+const app = express();
+const PORT = 3000;
+
+<<<<<<< Updated upstream
 // Configurar el motor de vistas
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -32,6 +42,40 @@ app.get('/', (req, res) => {
 
 // Ruta para elegir personaje
 app.get('/choose-character', (req, res) => {
+=======
+// Conectar a MongoDB
+mongoose.connect('mongodb://localhost:27017/miapp', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Conectado a MongoDB'))
+    .catch(err => console.error('Error conectando a MongoDB:', err));
+
+// Middleware
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
+app.use(session({
+    secret: 'mi_secreto',
+    resave: false,
+    saveUninitialized: true
+}));
+
+// Middleware para guardar mensajes de error en la sesión
+app.use((req, res, next) => {
+    res.locals.error_msg = req.session.error_msg || null; // Guardar el mensaje de error en la vista
+    req.session.error_msg = null; // Limpiar el mensaje de error en la sesión
+    next();
+});
+
+// Rutas
+app.use('/', authRoutes);
+
+// Rutas relacionadas con el juego (sin modificaciones)
+app.get('/choose-character', (req, res) => {
+    if (!req.session.userId) {
+        req.session.error_msg = 'Por favor, inicia sesión primero'; // Guardar mensaje de error en la sesión
+        return res.redirect('/login');
+    }
+
+>>>>>>> Stashed changes
     const characters = [
         { name: 'Zombie', health: 100, stamina: 50, energy: 30 },
         { name: 'Creeper', health: 120, stamina: 40, energy: 60 },
@@ -42,6 +86,13 @@ app.get('/choose-character', (req, res) => {
 
 // Ruta para jugar
 app.get('/play', (req, res) => {
+<<<<<<< Updated upstream
+=======
+    if (!req.session.userId) {
+        req.session.error_msg = 'Por favor, inicia sesión primero'; // Guardar mensaje de error en la sesión
+        return res.redirect('/login');
+    }
+>>>>>>> Stashed changes
     res.render('play');
 });
 
@@ -73,6 +124,14 @@ app.post('/api/create-character', upload.single('image'), (req, res) => {
 
 // Ruta para la tienda
 app.get('/shop', (req, res) => {
+<<<<<<< Updated upstream
+=======
+    if (!req.session.userId) {
+        req.session.error_msg = 'Por favor, inicia sesión primero'; // Guardar mensaje de error en la sesión
+        return res.redirect('/login');
+    }
+
+>>>>>>> Stashed changes
     const creatures = [
         { name: 'Enderman', price: 50 },
         { name: 'Esqueleto', price: 80 },
@@ -81,8 +140,6 @@ app.get('/shop', (req, res) => {
     res.render('shop', { creatures });
 });
 
-// Escucha del servidor
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
