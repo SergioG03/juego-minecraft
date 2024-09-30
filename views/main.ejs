@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Minecraft</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Bienvenido, <%= user.username %></h1>
+        <nav>
+            <ul>
+                <li><a href="/logout">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="juegos">
+        <h2>Selecciona tu juego</h2>
+        <div id="game-links">
+            <a href="/juego1.html">Minecraft Survival</a>
+            <a href="/juego2.html">Minecraft Creative</a>
+            <a href="/juego3.html">Minecraft Adventure</a>
+        </div>
+    </section>
+</body>
+</html>

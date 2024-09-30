@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Minecraft Portal</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Iniciar Sesión</h1>
+
+    <!-- Mostrar mensajes de error -->
+    <% if (error_msg.length > 0) { %>
+        <p style="color: red;"><%= error_msg %></p>
+    <% } %>
+
+    <!-- Mostrar mensajes de éxito -->
+    <% if (success_msg.length > 0) { %>
+        <p style="color: green;"><%= success_msg %></p>
+    <% } %>
+
+    <form action="/login" method="POST">
+        <input type="text" name="username" placeholder="Nombre de usuario" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <button type="submit">Iniciar Sesión</button>
+    </form>
+
+    <!-- Botón para registrarse -->
+    <p>No tienes una cuenta? <a href="/register" style="color: blue;">Registrarse</a></p>
+</body>
+</html>
