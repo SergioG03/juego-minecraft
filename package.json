@@ -1,5 +1,5 @@
 {
-  "name": "juego-minecraft-develop", // Puedes cambiarlo a "prueba_web" si prefieres
+  "name": "juego-minecraft-develop", 
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
