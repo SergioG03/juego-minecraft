@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "juego-minecraft-develop",
+=======
+  "name": "prueba_web",
+>>>>>>> e03b22e2c75430c2015cb28845a5036083f9fb57
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -12,6 +16,10 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
+<<<<<<< HEAD
+=======
+    "connect-flash": "^0.1.1",
+>>>>>>> e03b22e2c75430c2015cb28845a5036083f9fb57
     "ejs": "^3.1.10",
     "express": "^4.21.0",
     "express-session": "^1.18.0",

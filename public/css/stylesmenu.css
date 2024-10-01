@@ -4,12 +4,17 @@ body {
     background-color: #6db5a0; /* Color de fondo similar a la vegetación de Minecraft */
     color: #ffffff; /* Color de texto blanco */
     margin: 0;
+<<<<<<< HEAD
     padding: 0;
+=======
+    padding: 20px;
+>>>>>>> e03b22e2c75430c2015cb28845a5036083f9fb57
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh; /* Ocupa toda la altura de la ventana */
     text-align: center;
+<<<<<<< HEAD
     flex-direction: column; /* Para que el título y el formulario se alineen verticalmente */
 }
 
@@ -25,6 +30,8 @@ body {
 h1 {
     font-size: 24px;
     margin-bottom: 20px; /* Separación entre el título y el formulario */
+=======
+>>>>>>> e03b22e2c75430c2015cb28845a5036083f9fb57
 }
 
 /* Formulario */
@@ -33,7 +40,10 @@ form {
     border: 2px solid #b5b5b5; /* Borde gris claro */
     border-radius: 10px; /* Bordes redondeados */
     padding: 20px;
+<<<<<<< HEAD
     width: 300px; /* Ancho fijo para mantener el tamaño uniforme */
+=======
+>>>>>>> e03b22e2c75430c2015cb28845a5036083f9fb57
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra del formulario */
 }
 
@@ -60,8 +70,11 @@ button {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
+<<<<<<< HEAD
     width: 100%; /* Ancho completo del botón */
     margin-top: 10px; /* Margen superior del botón */
+=======
+>>>>>>> e03b22e2c75430c2015cb28845a5036083f9fb57
 }
 
 button:hover {
@@ -72,8 +85,11 @@ button:hover {
 a {
     color: #ffcc00; /* Color amarillo de Minecraft */
     text-decoration: none; /* Sin subrayado */
+<<<<<<< HEAD
     display: block; /* Hacer que el enlace sea un bloque para que aparezca en su propia línea */
     margin-top: 10px; /* Separación respecto al formulario */
+=======
+>>>>>>> e03b22e2c75430c2015cb28845a5036083f9fb57
 }
 
 a:hover {
